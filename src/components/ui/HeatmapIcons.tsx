@@ -70,8 +70,10 @@ export function HeatmapIcons({
     <div className="absolute inset-0 z-20">
       {INDUSTRIES.map((industry, index) => {
         const { x, y } = angleToUnitVector(industry.angleDeg);
-        const left = 50 + x * radiusPercent;
-        const top = 50 + y * radiusPercent;
+        const left = Number((50 + x * radiusPercent).toFixed(3));
+        const top = Number((50 + y * radiusPercent).toFixed(3));
+        const initX = Number((-x * 22).toFixed(3));
+        const initY = Number((-y * 22).toFixed(3));
 
         const orderIndex = revealOrder.indexOf(industry.id);
         const delay = START_DELAY + orderIndex * GAP_SECONDS;
@@ -94,11 +96,11 @@ export function HeatmapIcons({
             key={industry.id}
             className="absolute flex items-center justify-center"
             style={{ left: `${left}%`, top: `${top}%` }}
-            initial={{ opacity: 0, scale: 0.4, x: -x * 22, y: -y * 22 }}
+            initial={{ opacity: 0, scale: 0.4, x: initX, y: initY }}
             animate={
               active
                 ? { opacity: 1, scale: 1, x: 0, y: 0 }
-                : { opacity: 0, scale: 0.4, x: -x * 22, y: -y * 22 }
+                : { opacity: 0, scale: 0.4, x: initX, y: initY }
             }
             transition={{ duration, delay, ease: "easeOut" }}
           >
@@ -109,7 +111,7 @@ export function HeatmapIcons({
             */}
             <div className="relative -translate-x-1/2 -translate-y-1/2">
               <div
-                className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full sm:h-14 sm:w-14"
+                className="relative flex h-10 w-10 sm:h-14 sm:w-14 items-center justify-center overflow-hidden rounded-full"
                 style={{
                   background: GLASS_SHEEN,
                   boxShadow: GLASS_SHADOW,
@@ -127,7 +129,7 @@ export function HeatmapIcons({
                   aria-hidden="true"
                 />
                 <Icon
-                  className="relative h-5 w-5 text-white/95 sm:h-6 sm:w-6"
+                  className="relative h-4 w-4 sm:h-6 sm:w-6 text-white/95"
                   aria-hidden="true"
                 />
               </div>
@@ -139,7 +141,7 @@ export function HeatmapIcons({
                 fully expanded. Two stacked copies are used because a gradient
                 fill cannot be interpolated from a flat colour.
               */}
-              <span className="absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap text-[9px] font-medium tracking-wide sm:text-[11px]">
+              <span className="absolute left-1/2 top-full mt-1.5 sm:mt-2 -translate-x-1/2 text-center w-max max-w-[70px] sm:max-w-none sm:whitespace-nowrap text-[8.5px] sm:text-[11px] font-medium leading-tight tracking-wide">
                 <span className="relative inline-block">
                   <span
                     className="text-white/55 transition-opacity duration-700 ease-out"

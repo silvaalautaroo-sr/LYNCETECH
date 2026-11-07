@@ -78,7 +78,7 @@ export function SectionWhereWeStart() {
             </motion.h3>
           </div>
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 sm:mt-10 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
             {benefits.map((b, i) => {
               const Icon = BENEFIT_ICONS[i % BENEFIT_ICONS.length];
               return (
@@ -89,20 +89,20 @@ export function SectionWhereWeStart() {
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.6, delay: i * 0.08, ease }}
                   whileHover={{ y: -5 }}
-                  className="glass group relative flex flex-col justify-between rounded-2xl p-6 transition-all duration-500 hover:border-accent-primary/40 hover:shadow-[0_0_30px_rgba(24,194,156,0.14)]"
+                  className="glass group relative flex flex-col justify-between rounded-xl sm:rounded-2xl p-4 sm:p-6 transition-all duration-500 hover:border-accent-primary/40 hover:shadow-[0_0_30px_rgba(24,194,156,0.14)]"
                 >
                   <div>
-                    <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-accent-primary/10 text-accent-primary transition-all duration-300 group-hover:scale-110 group-hover:bg-accent-primary/20">
-                      <Icon className="h-5 w-5" strokeWidth={1.6} />
+                    <div className="mb-3 sm:mb-5 flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-lg sm:rounded-xl bg-accent-primary/10 text-accent-primary transition-all duration-300 group-hover:scale-110 group-hover:bg-accent-primary/20">
+                      <Icon className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={1.6} />
                     </div>
-                    <h4 className="text-base font-semibold text-ink transition-colors duration-300 group-hover:text-accent-primary">
+                    <h4 className="text-sm sm:text-base font-semibold text-ink transition-colors duration-300 group-hover:text-accent-primary leading-snug">
                       {b.title}
                     </h4>
-                    <p className="mt-2.5 text-sm leading-relaxed text-ink-muted">
+                    <p className="mt-2 text-xs sm:text-sm leading-relaxed text-ink-muted">
                       {b.description}
                     </p>
                   </div>
-                  <div className="mt-5 h-px w-8 bg-accent-primary/30 transition-all duration-500 group-hover:w-full group-hover:bg-accent-primary/60" />
+                  <div className="mt-4 sm:mt-5 h-px w-6 sm:w-8 bg-accent-primary/30 transition-all duration-500 group-hover:w-full group-hover:bg-accent-primary/60" />
                 </motion.div>
               );
             })}
@@ -110,7 +110,7 @@ export function SectionWhereWeStart() {
         </div>
 
         {/* Metrics */}
-        <div className="mt-20 grid gap-x-10 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 sm:mt-20 grid grid-cols-2 gap-x-6 gap-y-10 sm:gap-x-10 sm:gap-y-14 lg:grid-cols-4">
           {metrics.map((m, i) => (
             <motion.div
               key={i}
@@ -121,11 +121,11 @@ export function SectionWhereWeStart() {
               whileHover={{ y: -6 }}
               className="group cursor-default"
             >
-              <div className="keyword-gradient text-6xl font-semibold leading-none tracking-tighter transition-transform duration-500 group-hover:scale-[1.04] sm:text-7xl">
+              <div className="keyword-gradient text-4xl sm:text-6xl lg:text-7xl font-semibold leading-none tracking-tighter transition-transform duration-500 group-hover:scale-[1.04]">
                 <CountUp value={m.value} prefix={prefix} suffix={m.suffix} />
               </div>
-              <div className="mt-4 h-px w-10 bg-accent-primary/40 transition-all duration-500 group-hover:w-16" />
-              <p className="mt-4 max-w-[15rem] text-sm leading-relaxed text-ink-muted">
+              <div className="mt-3 sm:mt-4 h-px w-8 sm:w-10 bg-accent-primary/40 transition-all duration-500 group-hover:w-16" />
+              <p className="mt-3 sm:mt-4 max-w-[15rem] text-xs sm:text-sm leading-relaxed text-ink-muted">
                 {m.label}
               </p>
             </motion.div>

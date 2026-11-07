@@ -72,19 +72,33 @@ export function CalendlyEmbed({
   }, [ready, url, accent, bg, text]);
 
   return (
-    <div className="glass overflow-hidden rounded-2xl">
-      {!ready && (
-        <div
-          className="flex items-center justify-center text-sm text-ink-faint"
-          style={{ height }}
+    <div className="flex flex-col gap-2">
+      <div className="sm:hidden flex items-center justify-between px-2 text-xs text-ink-muted">
+        <span>Calendario interactivo</span>
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-accent-primary font-medium underline underline-offset-2"
         >
-          <span className="animate-pulse">Cargando calendario…</span>
-        </div>
-      )}
-      <div
-        ref={containerRef}
-        style={{ minWidth: 280, height: ready ? height : 0 }}
-      />
+          Abrir en pantalla completa ↗
+        </a>
+      </div>
+
+      <div className="glass overflow-hidden rounded-2xl">
+        {!ready && (
+          <div
+            className="flex items-center justify-center text-sm text-ink-faint"
+            style={{ height }}
+          >
+            <span className="animate-pulse">Cargando calendario…</span>
+          </div>
+        )}
+        <div
+          ref={containerRef}
+          style={{ minWidth: 280, height: ready ? height : 0 }}
+        />
+      </div>
     </div>
   );
 }

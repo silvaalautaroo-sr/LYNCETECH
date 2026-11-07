@@ -174,22 +174,22 @@ export function SectionCityBuild() {
           className="mx-auto mt-14 max-w-4xl"
         >
           {/* Header Meta */}
-          <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
+          <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4">
             <div className="flex items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-accent-primary/30 bg-accent-primary/10 text-accent-primary shadow-[0_0_15px_rgba(43,255,156,0.15)]">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-accent-primary/30 bg-accent-primary/10 text-accent-primary shadow-[0_0_15px_rgba(43,255,156,0.15)]">
                 <Layers className="h-4 w-4" />
               </div>
               <div>
                 <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-accent-primary">
                   {t("keyConcept")}
                 </span>
-                <h3 className="text-lg font-bold tracking-tight text-ink sm:text-xl">
+                <h3 className="text-base sm:text-xl font-bold tracking-tight text-ink">
                   <span className="keyword-gradient">{t("eyebrow")}</span>
                 </h3>
               </div>
             </div>
 
-            <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 font-mono text-[11px] text-ink-muted">
+            <div className="flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 font-mono text-[10px] sm:text-[11px] text-ink-muted shrink-0">
               <Cpu className="h-3 w-3 text-accent-secondary" />
               <span>DIGITAL TWIN ARCHITECTURE</span>
             </div>

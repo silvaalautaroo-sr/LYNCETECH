@@ -8,7 +8,8 @@
     "line2": "Sight",
     "line3": "for",
     "line4Part1": "Smart",
-    "line4Part2": "Cities"
+    "line4Part2": "Cities",
+    "explore": "Explorar"
   },
   "nav": {
     "intro": "Quienes somos",
@@ -112,7 +113,7 @@
     "tagline": "Visión inteligente para ciudades inteligentes",
     "navTitle": "Navegación",
     "contactTitle": "Contacto",
-    "email": "hola@lynce.tech",
+    "email": "hello@lynce.world",
     "rights": "Todos los derechos reservados."
   },
   "usp": {
@@ -232,6 +233,8 @@
     ],
     "cardsEyebrow": "Casos de aplicación",
     "aboutLabel": "Acerca de",
+    "projects": "Proyectos",
+    "swipeToSeePhotos": "Desliza para ver fotos",
     "cards": [
       {
         "front": "Desarrollos Urbanos",

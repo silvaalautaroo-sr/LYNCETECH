@@ -24,6 +24,7 @@ export function UrbanSimulationLens() {
     if (!ctx) return;
 
     let animId = 0;
+    let isVisible = false;
     let t = 0;
 
     // Building definitions on an isometric grid
@@ -283,13 +284,31 @@ export function UrbanSimulationLens() {
 
       ctx.restore();
 
-      animId = requestAnimationFrame(draw);
+      if (isVisible) {
+        animId = requestAnimationFrame(draw);
+      }
     };
 
-    animId = requestAnimationFrame(draw);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (!isVisible) {
+            isVisible = true;
+            animId = requestAnimationFrame(draw);
+          }
+        } else {
+          isVisible = false;
+          cancelAnimationFrame(animId);
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(canvas);
 
     return () => {
+      isVisible = false;
       cancelAnimationFrame(animId);
+      observer.disconnect();
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", onMouseMove);
     };

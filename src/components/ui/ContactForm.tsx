@@ -12,7 +12,7 @@ import { Check, Loader2 } from "lucide-react";
  * purely static Vercel deploy with no backend.
  */
 const FORM_ENDPOINT = "";
-const CONTACT_EMAIL = "hola@lynce.tech";
+const CONTACT_EMAIL = "hello@lynce.world";
 
 type Field = "name" | "email" | "company" | "message";
 type Values = Record<Field, string>;
@@ -77,7 +77,7 @@ export function ContactForm() {
   };
 
   const inputBase =
-    "glass w-full rounded-xl bg-transparent px-4 py-3 text-sm text-ink placeholder:text-ink-faint transition-all duration-300 focus:border-accent-primary/50 focus:outline-none focus:shadow-[0_0_24px_rgba(var(--accent-primary-rgb),0.14)]";
+    "glass w-full rounded-xl bg-transparent px-4 py-3 text-base sm:text-sm text-ink placeholder:text-ink-faint transition-all duration-300 focus:border-accent-primary/50 focus:outline-none focus:shadow-[0_0_24px_rgba(var(--accent-primary-rgb),0.14)]";
 
   return (
     <AnimatePresence mode="wait">

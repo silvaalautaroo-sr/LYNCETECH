@@ -90,8 +90,13 @@ export function Section6Vision() {
           transition={{ duration: 0.7, delay: 1, ease: [0.16, 1, 0.3, 1] }}
           className="mt-14"
         >
-          <a href="mailto:hola@lynce.tech" className="animated-border glass inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-medium text-ink shadow-[0_0_0_rgba(24,194,156,0)] transition-all duration-500 hover:shadow-[var(--shadow-glow)]">
-            <span className="relative z-[2]">hola@lynce.tech</span>
+          <a
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=hello@lynce.world"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="animated-border glass inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-medium text-ink shadow-[0_0_0_rgba(24,194,156,0)] transition-all duration-500 hover:shadow-[var(--shadow-glow)]"
+          >
+            <span className="relative z-[2]">hello@lynce.world</span>
           </a>
         </motion.div>
       </div>

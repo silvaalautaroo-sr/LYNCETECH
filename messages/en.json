@@ -8,7 +8,8 @@
     "line2": "Sight",
     "line3": "for",
     "line4Part1": "Smart",
-    "line4Part2": "Cities"
+    "line4Part2": "Cities",
+    "explore": "Explore"
   },
   "nav": {
     "intro": "About Us",
@@ -134,7 +135,7 @@
     "tagline": "Smart sight for smart cities.",
     "navTitle": "Navigation",
     "contactTitle": "Contact",
-    "email": "hola@lynce.tech",
+    "email": "hello@lynce.world",
     "rights": "All rights reserved."
   },
   "usp": {
@@ -254,6 +255,8 @@
     ],
     "cardsEyebrow": "Where it applies",
     "aboutLabel": "About",
+    "projects": "Projects",
+    "swipeToSeePhotos": "Swipe to see photos",
     "cards": [
       {
         "front": "Urban Developments",

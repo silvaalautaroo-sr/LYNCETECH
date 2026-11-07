@@ -74,7 +74,9 @@ export function Footer() {
               {tf("contactTitle")}
             </p>
             <a
-              href={`mailto:${tf("email")}`}
+              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(tf("email"))}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-sm text-accent-primary transition-opacity hover:opacity-80"
             >
               {tf("email")}

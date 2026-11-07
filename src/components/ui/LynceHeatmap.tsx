@@ -42,6 +42,14 @@ export function LynceHeatmap({ labels }: LynceHeatmapProps) {
   const [revealOrder, setRevealOrder] = useState<string[]>(() => INDUSTRIES.map((i) => i.id));
   const [iconColors, setIconColors] = useState<IconColorMap>({});
   const [heatSettled, setHeatSettled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const updateSize = () => setIsMobile(window.innerWidth < 640);
+    updateSize();
+    window.addEventListener("resize", updateSize, { passive: true });
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
   
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   const hasPlayed = useRef(false);
@@ -94,7 +102,7 @@ export function LynceHeatmap({ labels }: LynceHeatmapProps) {
     <div ref={wrapRef} className="relative mx-auto aspect-square w-full max-w-[520px]">
       {/* Ambient glow */}
       <div
-        className="pointer-events-none absolute inset-[-15%] rounded-full transition-opacity duration-[1500ms]"
+        className="pointer-events-none absolute inset-0 sm:inset-[-15%] rounded-full transition-opacity duration-[1500ms]"
         style={{
           opacity: heatStartedAt !== null ? 1 : 0,
           background: "radial-gradient(circle, rgba(245,150,78,0.10) 0%, rgba(110,25,190,0.07) 45%, transparent 72%)",
@@ -108,6 +116,7 @@ export function LynceHeatmap({ labels }: LynceHeatmapProps) {
       <HeatmapIcons
         active={iconsActive}
         revealOrder={revealOrder}
+        radiusPercent={isMobile ? 34 : 40}
         iconColors={iconColors}
         heatSettled={heatSettled}
         labels={labels}

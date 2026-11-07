@@ -11,9 +11,21 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 import { cn } from "@/lib/utils";
 
 export function Header() {
+  const tNav = useTranslations("nav");
   const tCta = useTranslations("cta");
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const NAV_ITEMS = [
+    { key: "intro", id: "intro" },
+    { key: "product", id: "product" },
+    { key: "cases", id: "cases" },
+    { key: "digitalTwin", id: "digital-twin" },
+    { key: "difference", id: "difference" },
+    { key: "vision", id: "vision" },
+    { key: "team", id: "team" },
+    { key: "contact", id: "contact" },
+  ] as const;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -21,10 +33,16 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const scrollToContact = () => {
-    const el = document.getElementById("contact");
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
     setMobileOpen(false);
+  };
+
+  const scrollToContact = () => {
+    scrollToSection("contact");
   };
 
   return (
@@ -74,20 +92,34 @@ export function Header() {
             </MagneticButton>
           </div>
 
-          {/* ── Mobile hamburger ──────────────────────────────────────────────── */}
-          <button
-            type="button"
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileOpen}
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="glass flex h-9 w-9 items-center justify-center rounded-full text-ink-muted transition-colors hover:text-ink sm:hidden"
-          >
-            {mobileOpen ? (
-              <X className="h-4 w-4" />
-            ) : (
-              <Menu className="h-4 w-4" />
-            )}
-          </button>
+          {/* ── Mobile action controls ────────────────────────────────────────── */}
+          <div className="flex items-center gap-2 sm:hidden">
+            {/* Quick Mail Action to hello@lynce.world */}
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=hello@lynce.world"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={tCta("talkToUs")}
+              className="animated-border glass relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full text-ink transition-all duration-300 hover:brightness-110 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
+            >
+              <Mail className="h-4 w-4 text-accent-primary" />
+            </a>
+
+            {/* Mobile hamburger */}
+            <button
+              type="button"
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileOpen}
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="glass flex h-9 w-9 items-center justify-center rounded-full text-ink-muted transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
+            >
+              {mobileOpen ? (
+                <X className="h-4 w-4" />
+              ) : (
+                <Menu className="h-4 w-4" />
+              )}
+            </button>
+          </div>
         </div>
       </header>
 
@@ -100,20 +132,34 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-x-4 top-[4.5rem] z-40 glass-strong rounded-2xl p-4 sm:hidden"
+            className="fixed inset-x-4 top-[4.5rem] z-40 max-h-[calc(100dvh-5.5rem)] overflow-y-auto glass-strong rounded-2xl p-5 shadow-2xl sm:hidden border border-border/80"
             style={{ fontFamily: "var(--font-inter), Inter, sans-serif" }}
           >
-            <div className="flex flex-col gap-2">
-              <div className="flex items-center justify-between pt-1 border-t border-border">
+            <div className="flex flex-col gap-4">
+              {/* Navigation links */}
+              <nav aria-label="Navegación móvil" className="flex flex-col gap-1">
+                {NAV_ITEMS.map((item) => (
+                  <button
+                    key={item.key}
+                    type="button"
+                    onClick={() => scrollToSection(item.id)}
+                    className="flex w-full items-center justify-between rounded-xl px-3.5 py-2.5 text-left text-sm font-medium text-ink transition-colors hover:bg-white/5 active:bg-white/10"
+                  >
+                    <span>{tNav(item.key)}</span>
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent-primary/60" />
+                  </button>
+                ))}
+              </nav>
+
+              {/* Bottom controls */}
+              <div className="flex items-center justify-between border-t border-border pt-4">
                 <LocaleSwitcher />
-                <div className="flex items-center gap-2">
-                  <MagneticButton onClick={scrollToContact} ariaLabel={tCta("talkToUs")}>
-                    <span className="flex items-center gap-2">
-                      <Mail className="h-3.5 w-3.5 text-accent-primary" />
-                      <span>{tCta("talkToUs")}</span>
-                    </span>
-                  </MagneticButton>
-                </div>
+                <MagneticButton onClick={scrollToContact} ariaLabel={tCta("talkToUs")}>
+                  <span className="flex items-center gap-2">
+                    <Mail className="h-3.5 w-3.5 text-accent-primary" />
+                    <span>{tCta("talkToUs")}</span>
+                  </span>
+                </MagneticButton>
               </div>
             </div>
           </motion.div>

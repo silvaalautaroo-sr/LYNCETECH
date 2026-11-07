@@ -288,6 +288,11 @@ export function HeroCity() {
     };
   }, []);
 
+  const scrollToNext = () => {
+    const el = document.getElementById("usp") || document.getElementById("intro");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <section id="hero" aria-label="Hero" className="relative h-screen w-full overflow-hidden">
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
@@ -347,22 +352,34 @@ export function HeroCity() {
               className="mt-10 h-px w-14 bg-gradient-to-r from-accent-primary/60 to-transparent"
               style={{ transformOrigin: "left" }}
             />
+
           </div>
         </div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.2, delay: 3 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 pointer-events-none"
+      {/* Mobile Explore button — bottom center, absolute */}
+      <motion.button
+        type="button"
+        onClick={scrollToNext}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1.8 }}
+        aria-label={t("explore")}
+        className="group md:hidden absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 cursor-pointer select-none text-ink-faint hover:text-accent-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary rounded-full px-3 py-1.5"
       >
+        <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.2em] opacity-70 group-hover:opacity-100 transition-opacity">
+          {t("explore")}
+        </span>
         <motion.div
-          animate={{ y: [0, 7, 0] }}
-          transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-          className="h-8 w-px bg-gradient-to-b from-white/20 to-transparent"
-        />
-      </motion.div>
+          animate={{ y: [0, 5, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          className="flex h-5 w-5 items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-sm group-hover:border-accent-primary/50 group-hover:bg-accent-primary/10 transition-colors"
+        >
+          <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </motion.div>
+      </motion.button>
     </section>
   );
 }

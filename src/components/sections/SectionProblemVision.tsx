@@ -74,7 +74,7 @@ export function SectionProblemVision() {
           </div>
 
           {/* Right — signature animation */}
-          <div className="relative">
+          <div className="relative overflow-hidden sm:overflow-visible">
             <LynceHeatmap labels={nodes} />
           </div>
         </div>

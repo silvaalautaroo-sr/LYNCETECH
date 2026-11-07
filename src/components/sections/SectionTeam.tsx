@@ -81,8 +81,51 @@ export function SectionTeam() {
           </motion.p>
         </div>
 
-        {/* Team grid */}
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {/* ── Mobile: Smooth Infinite Continuous Horizontal Carousel (4x1) ── */}
+        <div className="relative mt-12 w-full overflow-hidden sm:hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
+          <motion.div
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{
+              duration: 20,
+              ease: "linear",
+              repeat: Infinity,
+            }}
+            className="flex gap-4 w-max"
+          >
+            {[...members, ...members].map((member, i) => (
+              <div
+                key={`${member.name}-${i}`}
+                className="glass w-[250px] shrink-0 flex flex-col items-center rounded-2xl p-5 text-center border border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.3)]"
+              >
+                <TeamAvatar name={member.name} />
+
+                <h3 className="mt-4 text-base font-semibold leading-tight text-ink">
+                  {member.name}
+                </h3>
+
+                <span className="mt-1.5 inline-flex items-center rounded-full border border-accent-primary/30 bg-accent-primary/10 px-2.5 py-0.5 text-[11px] font-semibold text-accent-primary">
+                  {member.role}
+                </span>
+
+                <div className="mt-3 flex flex-wrap justify-center gap-1">
+                  {member.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-border bg-glass px-2 py-0.5 text-[10px] font-medium text-ink-muted"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-4 h-px w-8 bg-accent-primary/40" />
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* ── Desktop & Tablet: Static 4-Column Grid ── */}
+        <div className="mt-16 hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {members.map((member, i) => (
             <motion.div
               key={member.name}

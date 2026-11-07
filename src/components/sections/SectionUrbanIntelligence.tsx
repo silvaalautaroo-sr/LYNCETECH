@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { formatTextWithBold } from "@/lib/format";
+import { cn } from "@/lib/utils";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -51,9 +52,10 @@ export function SectionUrbanIntelligence() {
           </div>
         </div>
 
-        <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7">
+        <div className="mt-8 grid grid-cols-2 gap-3.5 sm:gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7">
           {TILES.map((tile, i) => {
             const Icon = tile.icon;
+            const isLast = i === TILES.length - 1;
             return (
               <motion.div
                 key={tile.key}
@@ -61,10 +63,15 @@ export function SectionUrbanIntelligence() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.5, delay: i * 0.05, ease }}
-                className="glass flex flex-col items-center justify-center gap-4 rounded-2xl p-5 text-center cursor-default select-none border border-white/5 bg-gradient-to-b from-white/[0.04] to-transparent shadow-[0_4px_20px_rgba(0,0,0,0.2)]"
+                className={cn(
+                  "glass flex items-center justify-center rounded-2xl p-4 sm:p-5 text-center cursor-default select-none border border-white/5 bg-gradient-to-b from-white/[0.04] to-transparent shadow-[0_4px_20px_rgba(0,0,0,0.2)]",
+                  isLast
+                    ? "col-span-2 sm:col-span-1 flex-row sm:flex-col gap-3 sm:gap-4"
+                    : "flex-col gap-3 sm:gap-4"
+                )}
               >
-                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-accent-primary/10 border border-accent-primary/20 text-accent-primary shadow-[0_0_25px_rgba(var(--accent-primary-rgb),0.12)]">
-                  <Icon className="h-8 w-8 sm:h-9 sm:w-9" strokeWidth={1.6} />
+                <div className="flex h-14 w-14 sm:h-16 sm:w-16 shrink-0 items-center justify-center rounded-2xl bg-accent-primary/10 border border-accent-primary/20 text-accent-primary shadow-[0_0_25px_rgba(var(--accent-primary-rgb),0.12)]">
+                  <Icon className="h-7 w-7 sm:h-9 sm:w-9" strokeWidth={1.6} />
                 </div>
                 <span className="text-xs sm:text-sm font-medium tracking-tight text-ink/90 leading-snug">
                   {t(`tiles.${tile.key}`)}
